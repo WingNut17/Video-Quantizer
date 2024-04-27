@@ -3,8 +3,8 @@ from moviepy.editor import VideoFileClip, ImageSequenceClip
 import os
 
 def main():
-    input_file = "E:\\Art\\Editing\\EDITS\\Mar24\\data_bending\\input1.mp4" #input("Please enter the folder path and file: (ex: \"C:\\Users\\Shawn\\Videos\\00018549.mp4\")\n ")
-    output_folder = "E:\\Art\Editing\\EDITS\\Apr24\\stop_motion" #input("Please enter the desired output folder: (ex: \"C:\\Users\\Shawn\\Videos\\\")\n")
+    input_file = input("Please enter the folder path and file: (ex: \"C:\\Users\\Shawn\\Videos\\00018549.mp4\")\n ")
+    output_folder = input("Please enter the desired output folder: (ex: \"C:\\Users\\Shawn\\Videos\\\")\n")
 
     extract_and_quantize_frames(input_file, output_folder)
 
