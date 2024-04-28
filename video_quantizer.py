@@ -79,6 +79,6 @@ if __name__ == "__main__":
     else:
         print("Usage: python video_quantizer.py input_file output_folder")
         print("(ex: \"C:\\Users\\Shawn\\Videos\\00018549.mp4\" \"C:\\Users\\Shawn\\Videos\\\")")
-        input_file = "E:\\Art\\Editing\\EDITS\\Gaming2024\\luigi jumpscare.mp4" #input("Enter the file you'd like to quantize: ")
-        output_folder = "E:\\Art\\Editing\\EDITS\\Gaming2024\\luigi" #input("Enter the folder you'd like to output to: ")
+        input_file = input("Enter the file you'd like to quantize: ")
+        output_folder = input("Enter the folder you'd like to output to: ")
         extract_and_quantize_frames(input_file, output_folder)
