@@ -12,12 +12,12 @@ def extract_and_quantize_frames(input_file, output_folder):
     # Make B&W palette containing only 1 pure white and 255 pure black entries
     palette = [255, 255, 255] + [0, 0, 0] * 255
 
+    # Create the output folder if it doesn't exist
+    os.makedirs(output_folder, exist_ok=True)
+
     # Push in B&W palette and save for debug purposes
     paletteImage.putpalette(palette)
     paletteImage.save(os.path.join(output_folder, "palette.png"))
-
-    # Create the output folder if it doesn't exist
-    os.makedirs(output_folder, exist_ok=True)
 
     # Load the video
     clip = VideoFileClip(input_file)
@@ -28,7 +28,7 @@ def extract_and_quantize_frames(input_file, output_folder):
         pil_frame = Image.fromarray(frame)
 
         # Quantize the frame to the specified palette
-        quantized_frame = pil_frame.quantize(palette=paletteImage, method=0)
+        quantized_frame = pil_frame.quantize(palette=paletteImage, method=3)
 
         # Save the quantized frames as PNG's image
         frame_path = os.path.join(output_folder, f"frame_{i:04d}.png")
@@ -64,9 +64,21 @@ def images_to_mp4(input_folder, output_file, fps=30):
     print("Converted back to mp4.")
 
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        print("Usage: python script_name.py input_file output_folder")
-    else:
+    if len(sys.argv) == 3:
         input_file = sys.argv[1]
         output_folder = sys.argv[2]
+        try:
+            extract_and_quantize_frames(input_file, output_folder)
+        except FileNotFoundError:
+            print("Error: Input file not found.")
+        except Exception as e:
+            print(f"Error: {e}")
+            print("Usage: python video_quantizer.py input_file output_folder")
+            print("(ex: \"C:\\Users\\Shawn\\Videos\\00018549.mp4\" \"C:\\Users\\Shawn\\Videos\\\")")
+            
+    else:
+        print("Usage: python video_quantizer.py input_file output_folder")
+        print("(ex: \"C:\\Users\\Shawn\\Videos\\00018549.mp4\" \"C:\\Users\\Shawn\\Videos\\\")")
+        input_file = "E:\\Art\\Editing\\EDITS\\Gaming2024\\luigi jumpscare.mp4" #input("Enter the file you'd like to quantize: ")
+        output_folder = "E:\\Art\\Editing\\EDITS\\Gaming2024\\luigi" #input("Enter the folder you'd like to output to: ")
         extract_and_quantize_frames(input_file, output_folder)
