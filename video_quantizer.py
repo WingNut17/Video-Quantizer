@@ -43,7 +43,7 @@ def extract_and_quantize_frames(input_file, output_folder):
 
 def images_to_mp4(input_folder, output_file, fps=30):
     # Get the list of image files in the input folder
-    image_files = [file for file in os.listdir(input_folder) if file.endswith((".png", ".jpg", ".jpeg")) and file != "palette.png"]
+    image_files = [file for file in os.listdir(input_folder) if file.endswith((".png", ".jpg", ".jpeg")) and file.startswith(("frame_"))]
     image_files.sort()  # Sort the files to maintain order
 
     frames = []
