@@ -3,9 +3,7 @@ from PIL import Image
 from moviepy.editor import VideoFileClip, ImageSequenceClip
 import os
 
-def extract_and_quantize_frames(input_file, output_folder):
-    print("Quantizing frames...")
-
+def make_palette(input_file, output_folder):
     # Make tiny palette Image, one black pixel
     paletteImage = Image.new('P', (1, 1))
 
@@ -18,6 +16,11 @@ def extract_and_quantize_frames(input_file, output_folder):
     # Push in B&W palette and save for debug purposes
     paletteImage.putpalette(palette)
     paletteImage.save(os.path.join(output_folder, "palette.png"))
+
+    extract_and_quantize_frames(input_file, output_folder, paletteImage)
+
+def extract_and_quantize_frames(input_file, output_folder, paletteImage):
+    print("Quantizing frames...")
 
     # Load the video
     clip = VideoFileClip(input_file)
@@ -81,4 +84,4 @@ if __name__ == "__main__":
         print("(ex: \"C:\\Users\\Shawn\\Videos\\00018549.mp4\" \"C:\\Users\\Shawn\\Videos\\\")")
         input_file = input("Enter the file you'd like to quantize: ")
         output_folder = input("Enter the folder you'd like to output to: ")
-        extract_and_quantize_frames(input_file, output_folder)
+        make_palette(input_file, output_folder)
