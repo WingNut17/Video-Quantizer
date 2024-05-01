@@ -27,7 +27,7 @@ def open_video_file(folder_path):
     # Creating video player window
     video_window = tk.Toplevel(window)
     video_window.title("video player")
-    video_window.iconbitmap("E:\Coding\Python\Video Glitcher\Video-Quantizer\icon.ico")
+    video_window.iconbitmap("icon.ico")
 
     # Open the video file with OpenCV
     cap = cv2.VideoCapture(video_file_path)
@@ -77,10 +77,10 @@ window.title("quantizer")
 window.configure(bg="white")
 
 # Window icon
-window.iconbitmap("E:\Coding\Python\Video Glitcher\Video-Quantizer\icon.ico")
+window.iconbitmap("icon.ico")
 
 # Logo
-logo = tk.PhotoImage(file="E:\Coding\Python\Video Glitcher\Video-Quantizer\logo.png")
+logo = tk.PhotoImage(file="logo.png")
 logo_label = tk.Label(window, image=logo, bg="white")
 logo_label.pack()
 

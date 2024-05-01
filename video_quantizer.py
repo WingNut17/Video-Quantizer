@@ -39,9 +39,9 @@ def extract_and_quantize_frames(input_file, output_folder):
     # Close the video
     clip.close()
 
-    images_to_mp4(output_folder, os.path.join(output_folder, "output.mp4"), fps=30)
+    images_to_mp4(output_folder, f"{output_folder}\output_1.mp4")
 
-def images_to_mp4(input_folder, output_file, fps=30):
+def images_to_mp4(input_folder, output_file):
     # Get the list of image files in the input folder
     image_files = [file for file in os.listdir(input_folder) if file.endswith((".png", ".jpg", ".jpeg")) and file.startswith(("frame_"))]
     image_files.sort()  # Sort the files to maintain order
@@ -54,8 +54,8 @@ def images_to_mp4(input_folder, output_file, fps=30):
         frames.append(image_path)
 
     # Create a video from the frames
-    video_clip = ImageSequenceClip(frames, fps=fps)
-    video_clip.write_videofile(output_file, codec="libx264", fps=fps)
+    video_clip = ImageSequenceClip(frames, fps=30)
+    video_clip.write_videofile(output_file, codec="libx264", fps=30)
 
     # Deletes the frames, keeps the video and palette
     for image_file in image_files:
